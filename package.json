@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
+    "firebase": "^11.0.1",
+    "firebase-admin": "^12.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "tailwindcss": "^3.4.14"
+  },
+  "scripts": {
+    "start": "nodemon app",
+    "build:css": "tailwindcss -i ./src/assets/css/input.css -o ./src/assets/css/output.css --watch",
+    "dev": "concurrently \"npm run start\" \"npm run build:css\""
+  }
+}
