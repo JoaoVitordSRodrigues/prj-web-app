@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778864326204",
+    "project_id": "prj-webapp-3dfad",
+    "storage_bucket": "prj-webapp-3dfad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778864326204:android:a0851342e3d91f18faf539",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxuIggKFo8pyDBg6EwT4L-TtWS1FTpQYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
