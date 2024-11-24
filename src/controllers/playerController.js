@@ -70,6 +70,29 @@ class PlayerController {
             return res.status(500).send("Erro ao deletar jogador");
         }
     }
+
+    static async updtPlayer(req, res) {
+        try {
+            const { id, name, age, position, team } = req.body;  // Extrai os dados
+
+            // Verificação de campos obrigatórios
+            if (!id || !name || !age || !position || !team) {
+                return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
+            }
+            
+            // Se passar pela verificação, chama a função de atualização
+            const data = { id, name, age, position, team };
+
+            // // console.log(id)
+            const player = await PlayerModel.updtPlayerById(data);
+    
+            return res.status(200).json({ message: 'Jogador atualizado com sucesso.' });
+        } catch (error) {
+            console.log("Controller: Não foi possível editar jogador", error);
+            return res.status(500).send("Erro ao editar jogador");
+        }
+        
+    }
 }
 
 

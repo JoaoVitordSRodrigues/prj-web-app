@@ -1,5 +1,5 @@
-
-<form action="/player" method="POST">
+<form id="forms" method="">
+    <input type="text"  name="id" id="id" value="{{player.id}}"><br>
     <label for="name">Nome</label>
     <input type="text" name="name" id="name" required value="{{player.name}}"><br>
 
@@ -7,7 +7,6 @@
     <input type="text" name="age" id="age" required value="{{player.age}}"><br>
 
     <label for="position">Posição</label>
-    <!-- O segundo valor estará selecionado inicialmente -->
     <select name="position" id="position" required>
         <option value="..." disabled>Selecione a posição</option>
         <option value="Atacante">Atacante</option>
@@ -20,9 +19,79 @@
     <label for="team">Time</label>
     <input type="text" name="team" id="team" required value="{{player.team}}"><br>
 
-    
-    <button type="submit">Cadastrar</button>
+    <button type="submit">Editar</button>
 </form>
+
 <script>
-    console.log('oie' , {{name}})
+    const form = document.getElementById('forms');
+
+    form.addEventListener("submit", function(event) {
+
+        // Obtém os valores dos campos dentro do evento de envio
+        const id = document.getElementById('id').value;
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const position = document.getElementById('position').value;
+        const team = document.getElementById('team').value;
+
+        // Validação básica
+        if (!id || !name || !age || !position || !team) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        // Monta os dados para envio
+        const data = {
+            id: id,
+            name: name, 
+            age: age, 
+            position: position, 
+            team: team
+        };
+
+        console.log('dados para enviar:', data);  // Exibe os dados no console para verificação
+
+        // Realiza a requisição PUT
+        fetch(`/player/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)  // Envia os dados no formato JSON
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log('Resposta do servidor:', data);  // Resposta do servidor
+            window.location.href = "/players";
+        })
+        .catch((err) => {
+            console.error('Erro na requisição:', err);
+            alert('Ocorreu um erro ao tentar atualizar o jogador.');
+        });
+    });
 </script>
+
+
+
+{{!-- form.addEventListener('submit', function(e){
+        
+        async function update(id, data){
+            fetch(`/player/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    data
+                })
+            }).then((response) => {
+                    response.json().then((response) => {
+                    console.log(response);
+                })
+            }).catch(err => {
+                console.error(err)
+            })
+        }
+    }) --}}

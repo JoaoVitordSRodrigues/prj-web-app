@@ -47,7 +47,10 @@ class PlayerModel{
                 return null;
             }
     
-            return player.data();
+            return {
+                id: player.id,
+                ...player.data(), // Combina os dados do documento com o ID
+            };
         } catch (error) {
             console.log("Model: Erro ao buscar jogador", error);
             throw error;
@@ -62,6 +65,27 @@ class PlayerModel{
             } else {
                 console.log('Erro ao excluir jogador');
             }
+        } catch (error) {
+            console.log("Model: Erro ao buscar jogador", error);
+            throw error;
+        }
+    }
+
+    static async updtPlayerById(data){
+        try {
+            const {id, ...updateData} = data;  // Extrai o id e cria um novo objeto com o restante dos dados
+
+            const player = db.collection('footballplayers').doc(id);
+
+            const res = await player.update(updateData);  // Atualiza apenas os outros campos, sem o id
+
+            if (res) {
+                console.log('Jogador editado com sucesso');
+            } else {
+                console.log('Erro ao editar jogador');
+            }
+
+            return player;
         } catch (error) {
             console.log("Model: Erro ao buscar jogador", error);
             throw error;
