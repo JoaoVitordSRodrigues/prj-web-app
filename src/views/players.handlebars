@@ -27,21 +27,21 @@
 </script>
 
 <div>
-    <h1>users</h1>
+    <h1 class="text-3xl mb-6">Jogadores</h1>
     {{#each players}}
-        <div class="card" style="border: 1px solid black;">
-            <div class="player-img">
-                <img src="../src/assets/img/ft-generica-jogadores.jpg" width="200px">
+        <div class="bg-slate-300 w-60 rounded-lg" >
+            <div >
+                <img src="../src/assets/img/ft-generica-jogadores.jpg" class="w-60 p-2 rounded-md">
             </div>
-            <div>
-                <h4>Nome:{{name}}</h4>
-                <p>Idade:{{age}}</p>
-                <p>Posição:{{position}}</p>
-                <p>Time:{{team}}</p>
+            <div class="p-2">
+                <h4><span class="font-bold">Nome: </span>{{name}}</h4>
+                <p><span class="font-bold">Idade: </span>{{age}}</p>
+                <p><span class="font-bold">Posição: </span>{{position}}</p>
+                <p><span class="font-bold">Time: </span>{{team}}</p>
             </div>
-            <div>
-                <a href="/player/{{id}}"><button>Editar</button></a>
-                <button onclick="deletePlayer('{{id}}')">Excluir</button>
+            <div class="flex justify-end gap-4 p-2">
+                <a href="/player/{{id}}"><button class="p-2 bg-blue-400 rounded-md text-center">Editar</button></a>
+                <button onclick="deletePlayer('{{id}}')" class="p-2 bg-blue-400 rounded-md text-center">Excluir</button>
             </div>
         </div>
         {{else}}
