@@ -1,14 +1,15 @@
+
 <form action="/player" method="POST">
     <label for="name">Nome</label>
-    <input type="text" name="name" id="name" required><br>
+    <input type="text" name="name" id="name" required value="{{player.name}}"><br>
 
     <label for="age">Idade</label>
-    <input type="text" name="age" id="age" required><br>
+    <input type="text" name="age" id="age" required value="{{player.age}}"><br>
 
     <label for="position">Posição</label>
     <!-- O segundo valor estará selecionado inicialmente -->
     <select name="position" id="position" required>
-        <option value="..." selected disabled>Selecione a posição</option>
+        <option value="..." disabled>Selecione a posição</option>
         <option value="Atacante">Atacante</option>
         <option value="Meia">Meia</option>
         <option value="Volante">Volante</option>
@@ -17,8 +18,11 @@
     </select><br>
 
     <label for="team">Time</label>
-    <input type="text" name="team" id="team" required><br>
+    <input type="text" name="team" id="team" required value="{{player.team}}"><br>
 
-
+    
     <button type="submit">Cadastrar</button>
 </form>
+<script>
+    console.log('oie' , {{name}})
+</script>

@@ -1,0 +1,49 @@
+<script>
+    function deletePlayer(id) {
+        if (confirm('Você tem certeza que deseja excluir?')) {
+            fetch(`/player/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                 console.log('Resposta do servidor:', response); // Adicionando log
+                if (response.ok) {
+                    alert('Jogador excluído com sucesso!');
+                } else {
+                    alert('Erro ao excluir jogador.');
+                    console.log('Status:', response.status);
+                    console.log('StatusText:', response.statusText);
+                }
+            })
+            .catch(error => {
+                alert('Erro na comunicação com o servidor');
+            });
+        }
+    }
+</script>
+
+<div>
+    <h1>users</h1>
+    {{#each players}}
+        <div class="card" style="border: 1px solid black;">
+            <div class="player-img">
+                <img src="../src/assets/img/ft-generica-jogadores.jpg" width="200px">
+            </div>
+            <div>
+                <h4>Nome:{{name}}</h4>
+                <p>Idade:{{age}}</p>
+                <p>Posição:{{position}}</p>
+                <p>Time:{{team}}</p>
+            </div>
+            <div>
+                <a href="/player/{{id}}"><button>Editar</button></a>
+                <button onclick="deletePlayer('{{id}}')">Excluir</button>
+            </div>
+        </div>
+        {{else}}
+        <p>Nao contem jogadores</p>
+    {{/each}}
+</div>
+
