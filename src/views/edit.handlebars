@@ -1,44 +1,49 @@
-<div class="flex items-center justify-center border-solid border-4 p-20 flex-col">
-    <div>
-        <h2>Editar Jogador</h2>
+<div class="flex w-full p-10 justify-center items-center">
+    <div class="flex flex-col w-96 h-auto shadow-lg p-10">
+        <div class="text-center">
+            <h2 class="text-lg font-bold mb-4 p-1">Editar Jogador</h2>
+        </div>
+        <div class="w-full p-1">
+            <form id="forms">
+                <input type="hidden" name="id" id="id" class="bg-slate-100 p-1 w-full" value="{{player.id}}" required><br>
+
+                <div class="flex flex-col">
+                    <label for="name">Nome</label>
+                    <input type="text" name="name" id="name" class="bg-slate-100 p-1 w-full" value="{{player.name}}" required><br>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="age">Idade</label>
+                    <input type="text" name="age" id="age" class="bg-slate-100 p-1 w-full" value="{{player.age}}" required><br>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="position">Posição</label>
+                    <!-- O segundo valor estará selecionado inicialmente -->
+                    <select name="position" id="position" class="bg-slate-100 p-1 w-full" required>
+                        <option value="..." disabled>Selecione a posição</option>
+                        <option value="Atacante" selected>Atacante</option>
+                        <option value="Meia">Meia</option>
+                        <option value="Volante">Volante</option>
+                        <option value="Zagueiro">Zagueiro</option>
+                        <option value="Goleiro">Goleiro</option>
+                    </select><br>
+                </div>
+                
+                <div class="flex flex-col">
+                    <label for="team">Time</label>
+                    <input type="text" name="team" id="team" class="bg-slate-100 p-1 w-full" value="{{player.team}}" required><br>
+
+                </div>
+
+                <div class="text-center text-white">
+                    <button type="submit" class="p-2 bg-blue-400 rounded-md text-center">Editar</button>
+                </div>
+            </form>
+        </div>
+
     </div>
-    <div class="w-60 flex">
-        <form action="/player" method="POST">
-            <div class="flex flex-col">
-                <label for="name">Nome</label>
-                <input type="text" name="name" id="name" value="{{player.name}}" class="bg-slate-100 p-1" required><br>
-            </div>
-
-            <div class="flex flex-col">
-                <label for="age">Idade</label>
-                <input type="text" name="age" id="age" value="{{player.age}}" class="bg-slate-100 p-1" required><br>
-            </div>
-
-            <div class="flex flex-col">
-                <label for="position">Posição</label>
-                <!-- O segundo valor estará selecionado inicialmente -->
-                <select name="position" id="position" class="bg-slate-100 p-1" required>
-                    <option value="..." selected disabled>Selecione a posição</option>
-                    <option value="Atacante">Atacante</option>
-                    <option value="Meia">Meia</option>
-                    <option value="Volante">Volante</option>
-                    <option value="Zagueiro">Zagueiro</option>
-                    <option value="Goleiro">Goleiro</option>
-                </select><br>
-            </div>
-            
-            <div class="flex flex-col">
-                <label for="team">Time</label>
-                <input type="text" name="team" id="team" value="{{player.team}}" class="bg-slate-100 p-1" required><br>
-
-            </div>
-
-            <div class="text-center">
-                <button type="submit" class="p-2 bg-blue-400 rounded-md text-center">Cadastrar</button>
-            </div>
-        </form>
-
-    </div>
+    
 </div>
 
 
@@ -46,7 +51,7 @@
     const form = document.getElementById('forms');
 
     form.addEventListener("submit", function(event) {
-
+        event.preventDefault();
         // Obtém os valores dos campos dentro do evento de envio
         const id = document.getElementById('id').value;
         const name = document.getElementById('name').value;

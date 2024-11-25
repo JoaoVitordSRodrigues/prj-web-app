@@ -91,10 +91,7 @@ class PlayerModel{
             throw error;
         }
     }
-    
-
-
-    
+     
 }
 // Exporta o modelo "Player" para ser usado em outras partes da aplicação
 module.exports = PlayerModel;

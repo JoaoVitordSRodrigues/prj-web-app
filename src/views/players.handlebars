@@ -28,24 +28,27 @@
 
 <div>
     <h1 class="text-3xl mb-6">Jogadores</h1>
-    {{#each players}}
-        <div class="bg-slate-300 w-60 rounded-lg" >
-            <div >
-                <img src="../src/assets/img/ft-generica-jogadores.jpg" class="w-60 p-2 rounded-md">
+    <div class="flex gap-10 flex-wrap">
+        {{#each players}}
+            <div class="bg-slate-100 w-60 rounded-lg shadow-lg" >
+                <div class="">
+                    <img src="../src/assets/img/ft-generica-jogadores.jpg" class="w-60 rounded-md">
+                </div>
+                <div class="p-4">
+                    <h4><span class="font-bold">Nome: </span>{{name}}</h4>
+                    <p><span class="font-bold">Idade: </span>{{age}}</p>
+                    <p><span class="font-bold">Posição: </span>{{position}}</p>
+                    <p><span class="font-bold">Time: </span>{{team}}</p>
+                </div>
+                <div class="flex justify-end gap-4 p-4">
+                    <a href="/player/{{id}}"><button class="p-2 bg-blue-400 rounded-md text-center text-white">Editar</button></a>
+                    <button onclick="deletePlayer('{{id}}')" class="p-2 bg-blue-400 rounded-md text-center text-white">Excluir</button>
+                </div>
             </div>
-            <div class="p-2">
-                <h4><span class="font-bold">Nome: </span>{{name}}</h4>
-                <p><span class="font-bold">Idade: </span>{{age}}</p>
-                <p><span class="font-bold">Posição: </span>{{position}}</p>
-                <p><span class="font-bold">Time: </span>{{team}}</p>
-            </div>
-            <div class="flex justify-end gap-4 p-2">
-                <a href="/player/{{id}}"><button class="p-2 bg-blue-400 rounded-md text-center">Editar</button></a>
-                <button onclick="deletePlayer('{{id}}')" class="p-2 bg-blue-400 rounded-md text-center">Excluir</button>
-            </div>
-        </div>
-        {{else}}
-        <p>Nao contem jogadores</p>
-    {{/each}}
+            {{else}}
+            <p>Nao contem jogadores</p>
+        {{/each}}
+    </div>
+    
 </div>
 
